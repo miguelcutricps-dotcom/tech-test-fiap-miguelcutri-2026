@@ -17,8 +17,31 @@ export default function WaterEffect() {
   const currentFrameRef = useRef(0);
   const [isLoaded, setIsLoaded] = useState(false);
 
-  // Pre-load all images
+  // Evita carregar a image sequence em telas mobile
+  const [isClient, setIsClient] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
+
   useEffect(() => {
+    setIsClient(true);
+
+    const mediaQuery = window.matchMedia("(max-width: 768px)");
+
+    const updateIsMobile = () => {
+      setIsMobile(mediaQuery.matches);
+    };
+
+    updateIsMobile();
+    mediaQuery.addEventListener("change", updateIsMobile);
+
+    return () => {
+      mediaQuery.removeEventListener("change", updateIsMobile);
+    };
+  }, []);
+
+  // Pre-load all images (apenas desktop/tablet)
+  useEffect(() => {
+    if (isMobile) return;
+
     let loadedCount = 0;
     const images: HTMLImageElement[] = new Array(TOTAL_FRAMES);
 
@@ -41,7 +64,7 @@ export default function WaterEffect() {
       };
       images[i] = img;
     }
-  }, []);
+  }, [isMobile]);
 
   // Draw a specific frame on the canvas (object-fit: cover)
   const drawFrame = useCallback((frameIndex: number) => {
@@ -70,7 +93,7 @@ export default function WaterEffect() {
 
   // Scroll-driven frame rendering
   useEffect(() => {
-    if (!isLoaded) return;
+    if (!isLoaded || isMobile) return;
 
     const handleResize = () => {
       const canvas = canvasRef.current;
@@ -118,7 +141,11 @@ export default function WaterEffect() {
       window.removeEventListener("scroll", handleScroll);
       window.removeEventListener("resize", handleResize);
     };
-  }, [isLoaded, drawFrame]);
+  }, [isLoaded, isMobile, drawFrame]);
+
+  if (!isClient || isMobile) {
+    return null;
+  }
 
   return (
     <div ref={containerRef} className={styles.waterEffect}>
