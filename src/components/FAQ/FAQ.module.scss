@@ -1,0 +1,233 @@
+@use "../../styles/variables" as *;
+@use "../../styles/mixins" as *;
+
+.faq {
+  @include full-width-section;
+  background-color: $color-background-primary;
+  padding: $spacing-5xl 0 $spacing-6xl;
+
+  @include tablet {
+    padding: $spacing-4xl 0;
+  }
+
+  @include ipad {
+    padding: $spacing-3xl 0 $spacing-4xl;
+  }
+
+  @include mobile {
+    padding: $spacing-3xl 0;
+  }
+
+  @include mobile-small {
+    padding: $spacing-2xl 0;
+  }
+
+  @include mobile-landscape {
+    padding: $spacing-xl 0;
+  }
+
+  // Container — Figma: 1354px de largura, centralizado (283px cada lado a 1920px)
+  &__container {
+    width: 100%;
+    max-width: 1354px;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 0 $spacing-3xl;
+
+    @include tablet {
+      max-width: calc(100% - #{$spacing-2xl} * 2);
+      padding: 0 $spacing-2xl;
+    }
+
+    @include ipad {
+      max-width: calc(100% - #{$spacing-xl} * 2);
+      padding: 0 $spacing-xl;
+    }
+
+    @include mobile {
+      max-width: calc(100% - #{$container-padding-mobile} * 2);
+      padding: 0;
+    }
+
+    @include mobile-small {
+      padding: 0;
+    }
+  }
+
+  // Animação de entrada
+  &__header,
+  &__grid {
+    opacity: 0;
+    transform: translateY(1.5rem);
+    transition: opacity 0.7s $ease-out-expo, transform 0.7s $ease-out-expo;
+  }
+
+  &--visible &__header {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  &--visible &__grid {
+    opacity: 1;
+    transform: translateY(0);
+    transition-delay: 0.15s;
+  }
+
+  // Header — Montserrat 500
+  &__title {
+    font-family: $font-family-heading;
+    font-size: $font-size-4xl;
+    font-weight: $font-weight-medium;
+    color: $color-text-primary;
+    line-height: $line-height-tight;
+
+    @include ipad {
+      font-size: $font-size-3xl;
+    }
+
+    @include mobile {
+      font-size: $font-size-2xl;
+    }
+
+    @include mobile-small {
+      font-size: $font-size-xl;
+    }
+  }
+
+  // Subtítulo — Figma: cor #ED145B
+  &__subtitle {
+    font-family: $font-family-heading;
+    font-size: $font-size-sm;
+    color: $color-fiap-red;
+    font-weight: $font-weight-medium;
+    margin-top: $spacing-sm;
+    margin-bottom: $spacing-3xl;
+
+    @include ipad {
+      margin-bottom: $spacing-2xl;
+    }
+
+    @include mobile {
+      font-size: $font-size-xs;
+      margin-bottom: $spacing-2xl;
+    }
+
+    @include mobile-small {
+      margin-bottom: $spacing-lg;
+    }
+  }
+
+  // Grid — Figma: sem bordas; linha indicadora no item ativo que cresce e fica rosa
+  &__grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: $spacing-lg $spacing-xl;
+
+    @include ipad {
+      grid-template-columns: 1fr;
+      gap: $spacing-md 0;
+    }
+
+    @include mobile-small {
+      gap: $spacing-sm 0;
+    }
+  }
+
+  // Item — sem bordas; barrinha horizontal que expande conforme a linha da pergunta
+  &__item {
+    position: relative;
+    padding: $spacing-lg 0;
+    opacity: 0;
+    transform: translateY(0.75rem);
+    transition: opacity 0.5s $ease-out-expo, transform 0.5s $ease-out-expo;
+
+    @include mobile {
+      padding: $spacing-md 0;
+    }
+  }
+
+  &--visible &__item {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  // Question — cor #8A959B, ativa fica #ED145B; barrinha ACIMA do texto (Figma)
+  &__question {
+    position: relative;
+    width: 100%;
+    @include flex-between;
+    padding: 1.875rem 0 $spacing-sm; // 30px acima para a barrinha (Figma)
+    background: none;
+    border: none;
+    color: $color-text-subdued;
+    cursor: pointer;
+    transition: color 0.1s ease;
+
+    // Barrinha horizontal acima do texto — pequena por padrão, expande e fica rosa quando ativo
+    &::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      height: 3px;
+      width: 3rem;
+      max-width: 100%;
+      background-color: $color-divider-faq;
+      border-radius: 0;
+      transition: width 0.35s $ease-out-expo, background-color 0s;
+    }
+  }
+
+  &__item:hover &__question::before,
+  &__item--active &__question::before {
+    width: 100%;
+    background-color: $color-fiap-red;
+  }
+
+  &__item:hover &__question,
+  &__item--active &__question {
+    color: $color-fiap-red;
+  }
+
+  &__questionText {
+    font-family: $font-family-heading;
+    font-size: $font-size-sm;
+    font-weight: $font-weight-regular;
+    text-align: left;
+    letter-spacing: $letter-spacing-wide;
+    text-transform: uppercase;
+
+    @include mobile {
+      font-size: $font-size-sm;
+    }
+
+    @include mobile-small {
+      font-size: $font-size-xs;
+      letter-spacing: $letter-spacing-normal;
+    }
+  }
+
+  // Answer
+  &__answer {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s $ease-out-expo;
+
+    &--open {
+      max-height: 18rem;
+    }
+  }
+
+  &__answerText {
+    font-size: $font-size-xs;
+    color: $color-text-subdued;
+    line-height: $line-height-relaxed;
+    padding-top: $spacing-sm;
+    padding-bottom: $spacing-md;
+
+    @include mobile-small {
+      font-size: 0.6875rem;
+      line-height: $line-height-normal;
+    }
+  }
+}

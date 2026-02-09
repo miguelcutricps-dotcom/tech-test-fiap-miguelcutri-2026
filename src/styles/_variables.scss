@@ -1,0 +1,149 @@
+// =============================================================================
+// DESIGN TOKENS — Extraídos do Figma (Teste Técnico FIAP)
+// =============================================================================
+
+// -----------------------------------------------------------------------------
+// CORES
+// -----------------------------------------------------------------------------
+$color-black: #000000;
+$color-dark: #0C0C0C;
+$color-dark-secondary: #1A1A1A;
+$color-dark-tertiary: #2D2D2D;
+$color-gray-dark: #333333;
+$color-gray: #666666;
+$color-gray-light: #999999;
+$color-gray-lighter: #CCCCCC;
+$color-white: #FFFFFF;
+$color-off-white: #F5F5F5;
+
+// Cores de marca FIAP
+$color-fiap-red: #ED145B;
+$color-fiap-red-hover: #D41150;
+$color-fiap-red-light: #FF2D6B;
+
+// Cores funcionais
+$color-accent: $color-fiap-red;
+$color-background-primary: $color-black;
+$color-background-secondary: $color-dark;
+$color-background-tertiary: $color-dark-secondary;
+$color-text-primary: $color-white;
+$color-text-secondary: $color-gray-light;
+$color-text-muted: $color-gray;
+$color-text-subdued: #8A959B; // Figma: cor de texto/borda nas seções Cursos e FAQ
+$color-border: rgba($color-white, 0.1);
+$color-border-section: #8A959B; // Figma: borda da seção Cursos
+$color-divider-faq: #545555; // Figma: cor das divisórias no FAQ
+
+// -----------------------------------------------------------------------------
+// TIPOGRAFIA
+// -----------------------------------------------------------------------------
+$font-family-primary: "Figtree", sans-serif;
+$font-family-heading: var(--font-montserrat), "Montserrat", sans-serif;
+
+// Font sizes (desktop-first, em rem)
+$font-size-xs: 0.75rem;      // 12px
+$font-size-sm: 0.875rem;     // 14px
+$font-size-base: 1rem;       // 16px
+$font-size-md: 1.125rem;     // 18px
+$font-size-lg: 1.25rem;      // 20px
+$font-size-xl: 1.5rem;       // 24px
+$font-size-2xl: 2rem;        // 32px
+$font-size-3xl: 2.5rem;      // 40px
+$font-size-4xl: 3rem;        // 48px
+$font-size-5xl: 3.5rem;      // 56px
+$font-size-6xl: 4rem;        // 64px
+$font-size-hero: 5rem;       // 80px
+$font-size-display: 7.5rem;  // 120px
+$font-size-marquee: 10rem;   // 160px
+
+// Font weights
+$font-weight-light: 300;
+$font-weight-regular: 400;
+$font-weight-medium: 500;
+$font-weight-semibold: 600;
+$font-weight-bold: 700;
+$font-weight-extrabold: 800;
+$font-weight-black: 900;
+
+// Line heights
+$line-height-tight: 1.1;
+$line-height-snug: 1.25;
+$line-height-normal: 1.5;
+$line-height-relaxed: 1.75;
+$line-height-loose: 2;
+
+// Letter spacing
+$letter-spacing-tight: -0.02em;
+$letter-spacing-normal: 0;
+$letter-spacing-wide: 0.05em;
+$letter-spacing-wider: 0.1em;
+$letter-spacing-widest: 0.2em;
+
+// -----------------------------------------------------------------------------
+// ESPAÇAMENTO
+// -----------------------------------------------------------------------------
+$spacing-2xs: 0.125rem;  // 2px
+$spacing-xs: 0.25rem;    // 4px
+$spacing-sm: 0.5rem;     // 8px
+$spacing-md: 1rem;       // 16px
+$spacing-lg: 1.5rem;     // 24px
+$spacing-xl: 2rem;       // 32px
+$spacing-2xl: 3rem;      // 48px
+$spacing-3xl: 4rem;      // 64px
+$spacing-4xl: 5rem;      // 80px
+$spacing-5xl: 6rem;      // 96px
+$spacing-6xl: 8rem;      // 128px
+
+// Container
+$container-max-width: 1440px;
+$container-padding: 5rem;  // 80px
+$container-padding-mobile: 1.25rem; // 20px
+
+// Navbar
+$navbar-height: 5rem;  // 80px (Figma)
+$navbar-height-mobile: 3.5rem; // 56px
+
+// -----------------------------------------------------------------------------
+// BREAKPOINTS (desktop-first → max-width)
+// -----------------------------------------------------------------------------
+$breakpoint-uhd: 3840px;
+$breakpoint-qhd: 2560px;
+$breakpoint-fhd: 1920px;
+$breakpoint-wxga-plus: 1600px;
+$breakpoint-wxga: 1440px;
+$breakpoint-hdp: 1366px;
+$breakpoint-hd: 1280px;
+$breakpoint-xga: 1024px;
+$breakpoint-ipad-pro: 1024px;
+$breakpoint-ipad-air: 820px;
+$breakpoint-ipad: 768px;
+$breakpoint-mobile-lg: 414px;
+$breakpoint-mobile-md: 360px;
+$breakpoint-mobile-sm: 320px;
+
+// -----------------------------------------------------------------------------
+// TRANSIÇÕES / ANIMAÇÕES
+// -----------------------------------------------------------------------------
+$transition-fast: 150ms ease;
+$transition-base: 300ms ease;
+$transition-slow: 500ms ease;
+$transition-slower: 700ms ease;
+
+$ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+$ease-out-quart: cubic-bezier(0.25, 1, 0.5, 1);
+$ease-in-out-cubic: cubic-bezier(0.65, 0, 0.35, 1);
+
+// -----------------------------------------------------------------------------
+// Z-INDEX
+// -----------------------------------------------------------------------------
+$z-index-navbar: 1000;
+$z-index-modal: 2000;
+$z-index-overlay: 1500;
+
+// -----------------------------------------------------------------------------
+// BORDERS / RADIUS
+// -----------------------------------------------------------------------------
+$border-radius-sm: 0.25rem;
+$border-radius-md: 0.5rem;
+$border-radius-lg: 1rem;
+$border-radius-full: 9999px;

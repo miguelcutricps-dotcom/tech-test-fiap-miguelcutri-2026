@@ -1,0 +1,161 @@
+@use "../../styles/variables" as *;
+@use "../../styles/mixins" as *;
+
+.header {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  min-height: 600px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: $color-background-primary;
+  overflow: hidden;
+  padding-top: $navbar-height;
+
+  @include respond-to("hd") {
+    min-height: 550px;
+  }
+
+  @include tablet {
+    padding-top: 4rem;
+    min-height: 500px;
+  }
+
+  @include mobile {
+    padding-top: $navbar-height-mobile;
+    min-height: 450px;
+  }
+
+  @include mobile-small {
+    min-height: 400px;
+  }
+
+  @include mobile-landscape {
+    height: 100vh;
+    min-height: 280px;
+    padding-top: 2.75rem;
+  }
+
+  // Conteúdo centralizado
+  &__content {
+    position: relative;
+    z-index: 2;
+    width: 100%;
+    max-width: 1294px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+
+    @include tablet {
+      padding: 0 $spacing-2xl;
+    }
+
+    @include ipad {
+      padding: 0 $spacing-xl;
+    }
+
+    @include mobile {
+      padding: 0 1.375rem;
+    }
+
+    @include mobile-small {
+      padding: 0 1.125rem;
+    }
+  }
+
+  // Grupo: "SOBRE" e título agrupados, mesma largura
+  // font-size definido aqui para que o em do SOBRE seja relativo ao título
+  &__titleGroup {
+    position: relative;
+    display: inline-block;
+    font-size: clamp(#{$font-size-2xl}, 6.25vw, 7.5rem); // 120px a 1920px
+
+    @include respond-to("hdp") {
+      font-size: clamp(#{$font-size-2xl}, 6vw, 6.5rem);
+    }
+
+    @include respond-to("hd") {
+      font-size: clamp(#{$font-size-2xl}, 5.5vw, 5rem);
+    }
+
+    @include tablet {
+      font-size: clamp(#{$font-size-2xl}, 6.5vw, #{$font-size-5xl});
+    }
+
+    @include ipad {
+      font-size: clamp(#{$font-size-2xl}, 6vw, #{$font-size-4xl});
+    }
+
+    @include mobile {
+      font-size: clamp(1.75rem, 8.5vw, #{$font-size-4xl});
+    }
+
+    @include mobile-small {
+      font-size: clamp(1.5rem, 8.5vw, #{$font-size-2xl});
+    }
+
+    @include mobile-landscape {
+      font-size: clamp(1.5rem, 5vh, #{$font-size-3xl});
+    }
+  }
+
+  // "SOBRE" — Figma: Montserrat 900, 350px a 1920px, #141313, centralizado atrás do título
+  // 350/120 = 2.917em relativo ao título
+  &__bgText {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 0;
+    font-family: $font-family-heading;
+    font-size: 2.917em; // 350px / 120px
+    font-weight: $font-weight-black;
+    color: #141313;
+    text-transform: uppercase;
+    letter-spacing: 0.02em;
+    line-height: 1;
+    white-space: nowrap;
+    user-select: none;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 1.5s $ease-out-expo;
+
+    &--visible {
+      opacity: 1;
+    }
+  }
+
+  // Título — Figma: Montserrat Light 300, 120px, line-height 140px, #FFF
+  &__title {
+    position: relative;
+    z-index: 1;
+    font-family: $font-family-heading;
+    font-size: 1em; // herda do titleGroup
+    font-weight: $font-weight-light; // 300
+    font-style: normal;
+    line-height: calc(140 / 120); // 1.1667
+    letter-spacing: -0.02em;
+    color: $color-text-primary;
+    text-align: left;
+  }
+
+  &__titleLine {
+    display: block;
+    overflow: hidden;
+  }
+
+  &__titleReveal {
+    display: inline-block;
+    margin-left: 0px;
+    padding-left: 0px;
+    transform: translateY(110%);
+    transition: transform 0.9s $ease-out-expo;
+
+    &--visible {
+      transform: translateY(0);
+    }
+  }
+}

@@ -1,0 +1,408 @@
+@use "../../styles/variables" as *;
+@use "../../styles/mixins" as *;
+
+.courses {
+  @include full-width-section;
+  background-color: $color-background-primary;
+  // Espaçamento vertical — Figma: 296px total entre Cursos e FAQ (200px bottom + 96px top do FAQ)
+  padding: $spacing-5xl 0 12.5rem;
+
+  @include tablet {
+    padding: $spacing-4xl 0;
+  }
+
+  @include ipad {
+    padding: $spacing-3xl 0 $spacing-4xl;
+  }
+
+  @include mobile {
+    padding: $spacing-3xl 0;
+  }
+
+  @include mobile-small {
+    padding: $spacing-2xl 0;
+  }
+
+  @include mobile-landscape {
+    padding: $spacing-xl 0;
+  }
+
+  // Container — Figma: 1354px de largura, centralizado (283px cada lado a 1920px)
+  &__container {
+    width: 100%;
+    max-width: 1354px;
+    margin-left: auto;
+    margin-right: auto;
+    padding: $spacing-3xl $spacing-3xl $spacing-2xl;
+
+    @include tablet {
+      max-width: calc(100% - #{$spacing-2xl} * 2);
+      padding: $spacing-2xl;
+    }
+
+    @include ipad {
+      max-width: calc(100% - #{$spacing-xl} * 2);
+      padding-left: $spacing-xl;
+      padding-right: $spacing-xl;
+      padding-top: $spacing-lg;
+      padding-bottom: $spacing-2xl;
+    }
+
+    @include mobile {
+      max-width: calc(100% - 2.75rem); // 22px cada lado (Figma 413px)
+      padding-left: 1.375rem; // 22px Figma
+      padding-right: 1.3125rem; // 21px Figma
+    }
+
+    @include mobile-small {
+      padding: $spacing-md;
+    }
+  }
+
+  // Animação de entrada
+  &__header,
+  &__categoryHeading,
+  &__panel {
+    opacity: 0;
+    transform: translateY(1.5rem);
+    transition: opacity 0.7s $ease-out-expo, transform 0.7s $ease-out-expo;
+  }
+
+  &--visible &__header {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  &--visible &__categoryHeading {
+    opacity: 1;
+    transform: translateY(0);
+    transition-delay: 0.1s;
+  }
+
+  &--visible &__panel {
+    opacity: 1;
+    transform: translateY(0);
+    transition-delay: 0.2s;
+  }
+
+  // Header — Figma: flex row com título à esquerda e tabs à direita (sem borda inferior)
+  &__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin-bottom: $spacing-2xl;
+    padding-bottom: $spacing-lg;
+
+    @include ipad {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: $spacing-lg;
+    }
+  }
+
+  &__headerLeft {
+    display: flex;
+    flex-direction: column;
+  }
+
+  // Título "Cursos" — Figma: Montserrat 300, 55px, line-height 67px
+  &__title {
+    font-family: $font-family-heading;
+    font-size: clamp(2rem, 2.86vw, 3.4375rem); // 55px a 1920px
+    font-weight: $font-weight-medium; // 500
+    color: $color-text-primary;
+    line-height: calc(67 / 55); // 1.218
+
+    @include ipad {
+      font-size: $font-size-3xl;
+    }
+
+    @include mobile {
+      font-size: $font-size-2xl;
+    }
+
+    @include mobile-small {
+      font-size: $font-size-xl;
+    }
+  }
+
+  // Subtítulo — Figma: "Cursos de Curta Duração" 22px, cor #ED145B
+  &__subtitle {
+    font-size: clamp(1rem, 1.15vw, 1.375rem); // 22px a 1920px
+    color: $color-fiap-red;
+    font-weight: $font-weight-medium;
+    margin-top: $spacing-sm;
+    line-height: 1.227; // 27/22
+
+    @include mobile {
+      font-size: $font-size-sm;
+    }
+
+    @include mobile-small {
+      font-size: $font-size-xs;
+    }
+  }
+
+  // Category heading — Figma: Montserrat 300, 55px, line-height 67px; escondido a partir de iPad
+  &__categoryHeading {
+    font-family: $font-family-heading;
+    font-size: clamp(2rem, 2.86vw, 3.4375rem); // 55px a 1920px
+    font-weight: $font-weight-medium; // 500
+    color: $color-text-primary;
+    line-height: 1.218; // 67/55
+    margin-bottom: $spacing-2xl;
+    text-transform: capitalize;
+
+    @include ipad {
+      display: none;
+    }
+  }
+
+  // Tabs — Figma: tabs alinhadas à direita; escondidas a partir de iPad (accordion no lugar)
+  &__tabs {
+    display: flex;
+    align-items: flex-end;
+    gap: $spacing-xl;
+
+    @include ipad {
+      display: none;
+    }
+  }
+
+  &__tab {
+    display: flex;
+    flex-direction: column; // Figma: ícone acima do texto
+    align-items: flex-start;
+    gap: $spacing-xs;
+    padding: $spacing-sm 0;
+    background: none;
+    border: none;
+    color: $color-text-subdued;
+    font-family: $font-family-primary;
+    font-size: $font-size-xs;
+    font-weight: $font-weight-semibold;
+    letter-spacing: $letter-spacing-widest;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: color $transition-base;
+    white-space: nowrap;
+
+    &:hover {
+      color: $color-text-primary;
+    }
+
+    &--active {
+      color: $color-text-primary;
+    }
+
+    @include ipad {
+      font-size: 0.6875rem;
+      letter-spacing: $letter-spacing-wider;
+    }
+  }
+
+  &__tabIcon {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    flex-shrink: 0;
+  }
+
+  // Ícone retângulo rosa acima do texto (conforme Figma)
+  &__tabIconRect {
+    display: block;
+    width: 39px;
+    height: 4px;
+    background-color: transparent;
+    border-radius: 0;
+    transition: background-color $transition-base;
+
+    &--active {
+      background-color: $color-fiap-red;
+    }
+  }
+
+  &__tabLabel {
+    text-align: left;
+  }
+
+  // Panel — escondido a partir de iPad (accordion mostra listas por categoria)
+  &__panel {
+    min-height: 12rem;
+
+    @include ipad {
+      display: none;
+    }
+  }
+
+  // Mobile accordion — Figma: três blocos (TECNOLOGIA, INOVAÇÃO, NEGÓCIOS), ícone circular vermelho +/−
+  &__mobileAccordion {
+    display: none;
+
+    @include ipad {
+      display: block;
+      margin-top: $spacing-lg;
+    }
+  }
+
+  &__mobileCategory {
+    border-bottom: 1px solid rgba($color-border-section, 0.3);
+
+    &:first-of-type {
+      border-top: 1px solid rgba($color-border-section, 0.3);
+    }
+  }
+
+  &__mobileCategoryButton {
+    width: 100%;
+    @include flex-between;
+    align-items: center;
+    padding: $spacing-lg 0;
+    background: none;
+    border: none;
+    color: $color-text-primary;
+    font-family: $font-family-primary;
+    font-size: $font-size-base;
+    font-weight: $font-weight-bold;
+    letter-spacing: $letter-spacing-widest;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: color $transition-base;
+
+    &:hover {
+      color: $color-fiap-red;
+    }
+  }
+
+  &__mobileCategoryLabel {
+    text-align: left;
+  }
+
+  // Ícone circular vermelho com + que vira − (Figma mobile)
+  &__mobileCategoryIcon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 1.5rem;
+    height: 1.5rem;
+    border-radius: 50%;
+    background-color: $color-fiap-red;
+    color: $color-white;
+    font-size: 1rem;
+    font-weight: $font-weight-light;
+    line-height: 1;
+    flex-shrink: 0;
+    margin-left: $spacing-md;
+  }
+
+  &__mobileCategoryContent {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s $ease-out-expo;
+
+    &--open {
+      max-height: 80rem; // espaço para lista de cursos
+    }
+  }
+
+  // Lista mobile — Figma: só modalidade (cinza) + nome (branco), divisores; sem expand por curso
+  &__mobileList {
+    list-style: none;
+    padding: 0 0 $spacing-lg;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+  }
+
+  &__mobileCourseItem {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+    padding: $spacing-md 0;
+    border-bottom: 1px solid rgba($color-border-section, 0.3);
+
+    &:last-child {
+      border-bottom: none;
+    }
+  }
+
+  &__mobileCourseModality {
+    font-size: $font-size-xs;
+    color: $color-text-subdued;
+    line-height: $line-height-normal;
+  }
+
+  &__mobileCourseName {
+    font-family: $font-family-primary;
+    font-size: $font-size-sm;
+    font-weight: $font-weight-medium;
+    color: $color-text-primary;
+    line-height: $line-height-normal;
+  }
+
+  // List (desktop)
+  &__list {
+    display: flex;
+    flex-direction: column;
+  }
+
+  &__item {
+    border-bottom: 1px solid rgba($color-border-section, 0.2);
+  }
+
+  &__itemButton {
+    width: 100%;
+    @include flex-between;
+    padding: $spacing-lg 0;
+    background: none;
+    border: none;
+    color: $color-text-primary;
+    cursor: pointer;
+    transition: color $transition-base;
+
+    &:hover {
+      color: $color-fiap-red;
+    }
+
+    @include mobile {
+      padding: $spacing-md 0;
+    }
+  }
+
+  &__itemName {
+    font-family: $font-family-primary;
+    font-size: $font-size-base;
+    font-weight: $font-weight-medium;
+    text-align: left;
+
+    @include mobile {
+      font-size: $font-size-sm;
+    }
+
+    @include mobile-small {
+      font-size: $font-size-xs;
+    }
+  }
+
+  &__itemContent {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s $ease-out-expo;
+
+    &--open {
+      max-height: 12rem;
+    }
+  }
+
+  &__itemDescription {
+    font-size: $font-size-sm;
+    color: $color-text-subdued;
+    line-height: $line-height-relaxed;
+    padding-bottom: $spacing-lg;
+
+    @include mobile {
+      font-size: $font-size-xs;
+      padding-bottom: $spacing-md;
+    }
+  }
+}

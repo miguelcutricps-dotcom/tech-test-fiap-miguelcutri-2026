@@ -1,0 +1,83 @@
+@use "../../styles/variables" as *;
+@use "../../styles/mixins" as *;
+
+.intro {
+  @include full-width-section;
+  background-color: $color-background-primary;
+
+  // Margens horizontais conforme Figma (215px esq / 210px dir em 1920px)
+  padding: 0 10.9375% 0 11.198%;
+
+  @include tablet {
+    padding: 0 5%;
+  }
+
+  @include ipad {
+    padding: 0 3%;
+  }
+
+  @include mobile {
+    padding: 0;
+  }
+
+  &__imageWrapper {
+    position: relative;
+    width: 100%;
+    // Aspect ratio fiel à imagem original (1495×804)
+    aspect-ratio: 1495 / 804;
+    overflow: hidden;
+    background-color: $color-dark-secondary;
+
+    @include tablet {
+      aspect-ratio: 1024 / 550;
+    }
+
+    @include ipad {
+      aspect-ratio: 768 / 414;
+    }
+
+    @include mobile {
+      aspect-ratio: 414 / 240;
+    }
+
+    @include mobile-small {
+      aspect-ratio: 320 / 200;
+    }
+
+    @include mobile-landscape {
+      aspect-ratio: 16 / 6;
+    }
+  }
+
+  // Cortina de reveal (desliza de cima para baixo)
+  &__revealCurtain {
+    position: absolute;
+    inset: 0;
+    background-color: $color-background-primary;
+    z-index: 3;
+    transform-origin: top;
+    transform: scaleY(1);
+    transition: transform 1.4s $ease-out-expo;
+  }
+
+  &__imageWrapper--revealed &__revealCurtain {
+    transform: scaleY(0);
+  }
+
+  // Imagem
+  &__image {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    overflow: hidden;
+
+    img {
+      transform: scale(1.1);
+      transition: transform 1.8s $ease-out-expo;
+    }
+  }
+
+  &__imageWrapper--revealed &__image img {
+    transform: scale(1);
+  }
+}

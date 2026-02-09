@@ -1,0 +1,178 @@
+@use "../../styles/variables" as *;
+@use "../../styles/mixins" as *;
+
+.waterEffect {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  min-height: 600px;
+  background-color: $color-background-primary;
+  overflow: hidden;
+
+  @include tablet {
+    min-height: 500px;
+  }
+
+  @include ipad {
+    height: 70vh;
+    min-height: 400px;
+  }
+
+  @include mobile {
+    height: 60vh;
+    min-height: 350px;
+  }
+
+  @include mobile-small {
+    min-height: 300px;
+  }
+
+  @include mobile-landscape {
+    height: 100vh;
+    min-height: 250px;
+  }
+
+  // Linhas de grid horizontais
+  &__gridLines {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: $spacing-4xl 0;
+    pointer-events: none;
+  }
+
+  &__gridLine {
+    width: 100%;
+    height: 1px;
+    background-color: rgba($color-white, 0.04);
+  }
+
+  // Canvas
+  &__canvasWrapper {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+  }
+
+  &__canvas {
+    width: 100%;
+    height: 100%;
+    display: block;
+  }
+
+  // Número "06"
+  &__number {
+    position: absolute;
+    bottom: 15%;
+    right: $container-padding;
+    z-index: 2;
+    pointer-events: none;
+
+    span {
+      font-family: $font-family-primary;
+      font-size: clamp(5rem, 10vw, 9rem);
+      font-weight: $font-weight-black;
+      color: transparent;
+      -webkit-text-stroke: 1px rgba($color-white, 0.08);
+      user-select: none;
+      line-height: 1;
+    }
+
+    @include tablet {
+      right: $spacing-2xl;
+    }
+
+    @include ipad {
+      right: $spacing-xl;
+
+      span {
+        font-size: clamp(4rem, 9vw, 6rem);
+      }
+    }
+
+    @include mobile {
+      right: $container-padding-mobile;
+      bottom: 20%;
+
+      span {
+        font-size: clamp(3rem, 15vw, 5rem);
+        -webkit-text-stroke: 0.5px rgba($color-white, 0.06);
+      }
+    }
+
+    @include mobile-landscape {
+      bottom: 10%;
+
+      span {
+        font-size: clamp(2rem, 8vh, 4rem);
+      }
+    }
+  }
+
+  // Círculo decorativo (canto direito)
+  &__circle {
+    position: absolute;
+    right: -4rem;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 8rem;
+    height: 8rem;
+    border: 1px solid rgba($color-white, 0.06);
+    border-radius: 50%;
+    z-index: 2;
+    pointer-events: none;
+
+    @include mobile {
+      width: 5rem;
+      height: 5rem;
+      right: -2.5rem;
+    }
+  }
+
+  // Labels de cursos no grid inferior
+  &__labels {
+    position: absolute;
+    bottom: $spacing-xl;
+    left: 0;
+    right: 0;
+    z-index: 3;
+    display: flex;
+    justify-content: space-between;
+    padding: 0 $container-padding;
+    pointer-events: none;
+
+    @include tablet {
+      padding: 0 $spacing-2xl;
+      bottom: $spacing-lg;
+    }
+
+    @include ipad {
+      padding: 0 $spacing-xl;
+      // Esconder alguns labels em telas médias
+      & > :nth-child(2),
+      & > :nth-child(4) {
+        display: none;
+      }
+    }
+
+    @include mobile {
+      display: none;
+    }
+  }
+
+  &__label {
+    font-family: $font-family-primary;
+    font-size: $font-size-xs;
+    font-weight: $font-weight-regular;
+    color: rgba($color-white, 0.3);
+    letter-spacing: $letter-spacing-wide;
+    text-transform: uppercase;
+
+    @include ipad {
+      font-size: 0.625rem;
+    }
+  }
+}

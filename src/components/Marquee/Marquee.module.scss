@@ -1,0 +1,91 @@
+@use "../../styles/variables" as *;
+@use "../../styles/mixins" as *;
+
+.marquee {
+  @include full-width-section;
+  background-color: $color-background-primary;
+  padding: $spacing-lg 0;
+
+  @include mobile {
+    padding: $spacing-sm 0;
+  }
+
+  &__row {
+    overflow: hidden;
+    width: 100%;
+
+    & + & {
+      margin-top: $spacing-xs;
+    }
+  }
+
+  &__track {
+    display: flex;
+    white-space: nowrap;
+    will-change: transform;
+
+    &[data-direction="left"] {
+      animation: marqueeLeft 30s linear infinite;
+    }
+
+    &[data-direction="right"] {
+      animation: marqueeRight 30s linear infinite;
+    }
+  }
+
+  // Texto do marquee — Figma: 80px (5rem) a 1920px, line-height 98px (1.225)
+  &__text {
+    font-family: "Montserrat", sans-serif;
+    font-size: clamp(2rem, 4.2vw, 5rem);
+    font-weight: $font-weight-regular;
+    color: $color-text-primary;
+    letter-spacing: $letter-spacing-wider;
+    text-transform: uppercase;
+    line-height: 1.225;
+    flex-shrink: 0;
+    padding-right: 3rem;
+    border-bottom: 2px solid $color-white;
+
+    @include tablet {
+      padding-right: 2rem;
+    }
+
+    @include ipad {
+      padding-right: 1.5rem;
+    }
+
+    @include mobile {
+      padding-right: 1.5rem;
+    }
+
+    @include mobile-small {
+      padding-right: 1rem;
+    }
+
+    @include mobile-landscape {
+      padding-right: 1rem;
+    }
+  }
+
+  &__separator {
+    display: none;
+  }
+}
+
+@keyframes marqueeLeft {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+@keyframes marqueeRight {
+  0% {
+    transform: translateX(-50%);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}

@@ -1,0 +1,92 @@
+// =============================================================================
+// CSS RESET — Baseado no Modern CSS Reset (Andy Bell)
+// =============================================================================
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 16px;
+  -webkit-text-size-adjust: 100%;
+  -moz-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+  scroll-behavior: smooth;
+}
+
+body {
+  min-height: 100vh;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  line-height: 1.5;
+}
+
+// Remover estilos padrão de listas
+ul,
+ol {
+  list-style: none;
+}
+
+// Elementos que não possuem uma classe recebem estilos padrão
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+// Imagens responsivas por padrão
+img,
+picture,
+video,
+canvas,
+svg {
+  display: block;
+  max-width: 100%;
+}
+
+// Herdar fontes em form elements
+input,
+button,
+textarea,
+select {
+  font: inherit;
+  color: inherit;
+}
+
+button {
+  cursor: pointer;
+  background: none;
+  border: none;
+  outline: none;
+}
+
+// Remover animações para quem prefere menos movimento
+@media (prefers-reduced-motion: reduce) {
+  html:focus-within {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+// Remove estilos de fieldset
+fieldset {
+  border: none;
+}
+
+// Typography reset
+h1, h2, h3, h4, h5, h6 {
+  font-size: inherit;
+  font-weight: inherit;
+}

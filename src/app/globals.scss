@@ -1,0 +1,47 @@
+@use "../styles/reset";
+@use "../styles/variables" as *;
+@use "../styles/typography";
+
+// =============================================================================
+// ESTILOS GLOBAIS
+// =============================================================================
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: $color-background-primary;
+  color: $color-text-primary;
+  overflow-x: hidden;
+}
+
+// Seleção de texto
+::selection {
+  background-color: $color-fiap-red;
+  color: $color-white;
+}
+
+// Scrollbar customizada
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: $color-dark;
+}
+
+::-webkit-scrollbar-thumb {
+  background: $color-gray-dark;
+  border-radius: $border-radius-full;
+
+  &:hover {
+    background: $color-gray;
+  }
+}
+
+// Focus visível para acessibilidade
+*:focus-visible {
+  outline: 2px solid $color-fiap-red;
+  outline-offset: 2px;
+}

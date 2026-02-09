@@ -1,0 +1,85 @@
+@use "../../styles/variables" as *;
+@use "../../styles/mixins" as *;
+
+.marqueeScroll {
+  @include full-width-section;
+  position: relative;
+  z-index: 5;
+  background-color: transparent;
+  margin-top: -8rem;
+  padding: $spacing-3xl 0;
+
+  @include tablet {
+    margin-top: -6rem;
+    padding: $spacing-2xl 0;
+  }
+
+  @include ipad {
+    margin-top: -5rem;
+    padding: $spacing-xl 0;
+  }
+
+  @include mobile {
+    margin-top: -4rem;
+    padding: $spacing-lg 0;
+  }
+
+  @include mobile-landscape {
+    margin-top: -3rem;
+    padding: $spacing-md 0;
+  }
+
+  &__track {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    overflow: hidden;
+  }
+
+  &__content {
+    will-change: transform;
+  }
+
+  &__line {
+    white-space: nowrap;
+    line-height: 1.15;
+  }
+
+  &__text {
+    font-family: $font-family-primary;
+    font-size: clamp(4rem, 9vw, $font-size-marquee);
+    font-weight: $font-weight-black;
+    color: transparent;
+    -webkit-text-stroke: 1px rgba($color-white, 0.15);
+    letter-spacing: $letter-spacing-tight;
+    text-transform: uppercase;
+    user-select: none;
+
+    @include respond-to("hdp") {
+      font-size: clamp(3.5rem, 8vw, 8rem);
+    }
+
+    @include tablet {
+      font-size: clamp(3rem, 8vw, 7rem);
+    }
+
+    @include ipad {
+      font-size: clamp(2.5rem, 7vw, 5rem);
+      -webkit-text-stroke: 0.75px rgba($color-white, 0.13);
+    }
+
+    @include mobile {
+      font-size: clamp(2rem, 12vw, 4rem);
+      -webkit-text-stroke: 0.5px rgba($color-white, 0.12);
+    }
+
+    @include mobile-small {
+      font-size: clamp(1.5rem, 11vw, 3rem);
+    }
+
+    @include mobile-landscape {
+      font-size: clamp(1.5rem, 6vh, 3rem);
+      -webkit-text-stroke: 0.5px rgba($color-white, 0.12);
+    }
+  }
+}
