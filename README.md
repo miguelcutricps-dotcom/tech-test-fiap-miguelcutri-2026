@@ -2,7 +2,7 @@
 
 Landing Page desenvolvida como teste técnico de Front-end para a FIAP, seguindo fielmente os layouts do Figma (desktop 1920×1080 e mobile 414×736).
 
-**Deploy:** [tech-test-fiap-miguelcutri-2026.vercel.app](https://tech-test-fiap-miguelcutri-2026-ha61wtr7v-triuxs-projects.vercel.app)
+**Deploy:** [tech-test-fiap-miguelcutri-2026.vercel.app](https://tech-test-fiap-miguelcutri-2026.vercel.app)
 
 ## Tecnologias
 
@@ -57,7 +57,7 @@ A página é totalmente responsiva, utilizando mixins SCSS para breakpoints cons
 
 ```bash
 # Clonar o repositório
-git clone https://github.com/seu-usuario/tech-test-fiap-miguelcutri-2026.git
+git clone https://github.com/miguelcutricps-dotcom/tech-test-fiap-miguelcutri-2026.git
 cd tech-test-fiap-miguelcutri-2026
 
 # Instalar dependências
